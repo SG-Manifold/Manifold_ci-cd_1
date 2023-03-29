@@ -51,7 +51,7 @@ jobs:
   deploy-staging:
     needs: [backend-tests]
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/Develop'
 
     steps:
     - name: Checkout repository
