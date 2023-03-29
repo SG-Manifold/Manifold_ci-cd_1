@@ -21,7 +21,7 @@ def test_register(client):
 def test_login(client):
     # test login endpoint with valid input
     data = {
-        'rusername': 'testuser2',
+        'rusername': 'testuser5',
         'rpassword': 'password123'
     }
     response = client.post('/login', json=data)
@@ -46,13 +46,13 @@ def test_update_tenant(client):
         'domain_name': 'updatedtenant.example.com',
         'api_key': 'updatedapikey123'
     }
-    response = client.put('/tenant/3', json=data)
+    response = client.put('/tenant/1', json=data)
     assert response.status_code == 200
     assert response.json == {'message': 'Tenant updated successfully', 'tenant_id': 1}
 
 def test_delete_tenant(client):
     # test delete tenant endpoint
-    response = client.delete('/tenant/3')
+    response = client.delete('/tenant/1')
     assert response.status_code == 200
     assert response.json == {'message': 'Tenant deleted successfully', 'tenant_id': 1}
 
