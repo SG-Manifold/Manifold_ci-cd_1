@@ -42,4 +42,4 @@ jobs:
 
       - name: Run backend tests
         run: |
-          pytest
+          pytest test.py
