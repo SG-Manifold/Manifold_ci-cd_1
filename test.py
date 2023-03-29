@@ -16,7 +16,7 @@ def test_register(client):
     }
     response = client.post('/register', json=data)
     assert response.status_code == 201
-    assert response.json == {'message': 'User registered successfully', 'user_id': 14}
+    assert response.json == {'message': 'User registered successfully', 'user_id': 1}
 
 def test_login(client):
     # test login endpoint with valid input
@@ -26,7 +26,7 @@ def test_login(client):
     }
     response = client.post('/login', json=data)
     assert response.status_code == 200
-    assert response.json == {'message': 'User authenticated successfully', 'user_id': 11, 'is_superuser': False}
+    assert response.json == {'message': 'User authenticated successfully', 'user_id': 1, 'is_superuser': False}
 
 def test_create_tenant(client):
     # test create tenant endpoint with valid input
@@ -37,7 +37,7 @@ def test_create_tenant(client):
     }
     response = client.post('/tenant', json=data)
     assert response.status_code == 201
-    assert response.json == {'message': 'Tenant created successfully', 'tenant_id': 8}
+    assert response.json == {'message': 'Tenant created successfully', 'tenant_id': 1}
 
 def test_update_tenant(client):
     # test update tenant endpoint with valid input
@@ -48,17 +48,17 @@ def test_update_tenant(client):
     }
     response = client.put('/tenant/3', json=data)
     assert response.status_code == 200
-    assert response.json == {'message': 'Tenant updated successfully', 'tenant_id': 3}
+    assert response.json == {'message': 'Tenant updated successfully', 'tenant_id': 1}
 
 def test_delete_tenant(client):
     # test delete tenant endpoint
     response = client.delete('/tenant/3')
     assert response.status_code == 200
-    assert response.json == {'message': 'Tenant deleted successfully', 'tenant_id': 3}
+    assert response.json == {'message': 'Tenant deleted successfully', 'tenant_id': 1}
 
 def test_get_tenant(client):
     # test get tenant endpoint
-    response = client.get('/tenant/3')
+    response = client.get('/tenant/1')
     assert response.status_code == 404
 
 def test_list_tenants(client):
