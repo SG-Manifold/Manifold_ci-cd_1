@@ -1,50 +1,45 @@
-name: CI/CD 
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
       - Develop
-      - Deploy
+      - deploy
       - feature/*
       - release/*
 
 jobs:
-  backend-test:
+  backend-tests:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/Deploy'
-
-
-
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-          ref: ${{ github.ref }}
-
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     services:
       postgres:
         image: postgres:13
         env:
-           POSTGRES_USER: postgres
-           POSTGRES_PASSWORD: postgres
-           POSTGRES_DB: test_db
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_db
         ports:
-         - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5      
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.x'
-        
-    - name: List files
-      run: |
-        ls -la    
-    - name: Install backend dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Run backend tests
-      run: |
-        pytest test.py
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run backend tests
+        run: |
+          pytest
