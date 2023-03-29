@@ -8,11 +8,11 @@ app = Flask(__name__)
 CORS(app)
 
 # create a connection to the Postgres database
-conn = psycopg2.connect(
+conn = psycopg2.connect (
     host="localhost",
     database="test_db",
     user="postgres",
-    password="postgres"
+    password="postgres",
     port="5432"
 )
 
