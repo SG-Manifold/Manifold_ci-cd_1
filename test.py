@@ -58,7 +58,7 @@ def test_update_tenant(client):
 
 def test_get_tenant(client):
     # test get tenant endpoint
-    response = client.get('/tenant/1')
+    response = client.get('/tenant/19')
     assert response.status_code == 404
 
 def test_list_tenants(client):
