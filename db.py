@@ -3,9 +3,9 @@ import psycopg2
 # create a connection to the Postgres database
 conn = psycopg2.connect(
     host="localhost",
-    database="manifold",
-    user="sadmin",
-    password="12345"
+    database="test_db",
+    user="postgres",
+    password="postgres"
 )
 
 # create a cursor object to interact with the database

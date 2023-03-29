@@ -40,6 +40,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create database tables
+        run: python db.py    
+
       - name: Run backend tests
         run: |
           pytest test.py
