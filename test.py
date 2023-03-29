@@ -7,26 +7,26 @@ def client():
     with app.test_client() as client:
         yield client
 
-# def test_register(client):
-#     # test register endpoint with valid input
-#     data = {
-#         'username': 'testuser5',
-#         'email': 'testuser5@example.com',
-#         'password': 'password123'
-#     }
-#     response = client.post('/register', json=data)
-#     assert response.status_code == 201
-#     assert response.json == {'message': 'User registered successfully', 'user_id': 1}
+def test_register(client):
+    # test register endpoint with valid input
+    data = {
+        'username': 'testuser5',
+        'email': 'testuser5@example.com',
+        'password': 'password123'
+    }
+    response = client.post('/register', json=data)
+    assert response.status_code == 201
+    assert response.json == {'message': 'User registered successfully', 'user_id': 1}
 
-# def test_login(client):
-#     # test login endpoint with valid input
-#     data = {
-#         'rusername': 'testuser5',
-#         'rpassword': 'password123'
-#     }
-#     response = client.post('/login', json=data)
-#     assert response.status_code == 200
-#     assert response.json == {'message': 'User authenticated successfully', 'user_id': 1, 'is_superuser': False}
+def test_login(client):
+    # test login endpoint with valid input
+    data = {
+        'rusername': 'testuser5',
+        'rpassword': 'password123'
+    }
+    response = client.post('/login', json=data)
+    assert response.status_code == 200
+    assert response.json == {'message': 'User authenticated successfully', 'user_id': 1, 'is_superuser': False}
 
 def test_create_tenant(client):
     # test create tenant endpoint with valid input
@@ -88,4 +88,4 @@ def test_list_tenants(client):
         assert isinstance(item['updated_at'], str)
 
     # assert that the response body has the expected length
-    assert len(response_body) == 3
+    assert len(response_body) == 1
