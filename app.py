@@ -10,9 +10,10 @@ CORS(app)
 # create a connection to the Postgres database
 conn = psycopg2.connect(
     host="localhost",
-    database="manifold",
+    database="test_db",
     user="postgres",
-    password="12345"
+    password="postgres"
+    port="5432"
 )
 
 # create a cursor object to interact with the database
