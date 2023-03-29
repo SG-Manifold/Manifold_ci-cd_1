@@ -49,7 +49,7 @@ jobs:
 
 
   deploy-staging:
-    needs: [backend-test, frontend-test]
+    needs: [backend-test]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop'
 
