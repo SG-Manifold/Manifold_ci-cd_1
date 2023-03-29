@@ -46,3 +46,32 @@ jobs:
       - name: Run backend tests
         run: |
           pytest test.py
+
+
+  deploy-staging:
+    needs: [backend-test, frontend-test]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+    - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+    - name: Deploy backend to staging
+      env:
+        DO_API_KEY: ${{ secrets.DO_API_KEY }}
+      run: |
+        # Adapt this script to deploy your backend to the staging droplet on DigitalOcean
+        # using the API
+        # using the API key stored in the DO_API_KEY environment variable
+        # and any necessary deployment scripts or commands.     
