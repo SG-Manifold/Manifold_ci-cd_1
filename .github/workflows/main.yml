@@ -12,7 +12,7 @@ on:
 jobs:
   backend-test:
     runs-on: ubuntu-latest
-    if: github.ref != 'refs/heads/deploy'
+    if: github.ref != 'refs/heads/Deploy'
 
     steps:
     - name: Checkout repository
