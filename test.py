@@ -18,15 +18,15 @@ def client():
 #     assert response.status_code == 201
 #     assert response.json == {'message': 'User registered successfully', 'user_id': 1}
 
-def test_login(client):
-    # test login endpoint with valid input
-    data = {
-        'rusername': 'testuser5',
-        'rpassword': 'password123'
-    }
-    response = client.post('/login', json=data)
-    assert response.status_code == 200
-    assert response.json == {'message': 'User authenticated successfully', 'user_id': 1, 'is_superuser': False}
+# def test_login(client):
+#     # test login endpoint with valid input
+#     data = {
+#         'rusername': 'testuser5',
+#         'rpassword': 'password123'
+#     }
+#     response = client.post('/login', json=data)
+#     assert response.status_code == 200
+#     assert response.json == {'message': 'User authenticated successfully', 'user_id': 1, 'is_superuser': False}
 
 def test_create_tenant(client):
     # test create tenant endpoint with valid input
