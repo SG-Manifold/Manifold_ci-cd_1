@@ -50,15 +50,15 @@ def test_update_tenant(client):
     assert response.status_code == 200
     assert response.json == {'message': 'Tenant updated successfully', 'tenant_id': 1}
 
-# def test_delete_tenant(client):
-#     # test delete tenant endpoint
-#     response = client.delete('/tenant/1')
-#     assert response.status_code == 200
-#     assert response.json == {'message': 'Tenant deleted successfully', 'tenant_id': 1}
+def test_delete_tenant(client):
+    # test delete tenant endpoint
+    response = client.delete('/tenant/1')
+    assert response.status_code == 200
+    assert response.json == {'message': 'Tenant deleted successfully', 'tenant_id': 1}
 
 def test_get_tenant(client):
     # test get tenant endpoint
-    response = client.get('/tenant/19')
+    response = client.get('/tenant/1')
     assert response.status_code == 404
 
 def test_list_tenants(client):
@@ -88,4 +88,4 @@ def test_list_tenants(client):
         assert isinstance(item['updated_at'], str)
 
     # assert that the response body has the expected length
-    assert len(response_body) == 1
+    assert len(response_body) == 0
