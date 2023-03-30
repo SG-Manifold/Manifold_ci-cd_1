@@ -43,9 +43,9 @@ jobs:
       - name: Create database tables
         run: python db.py    
 
-      # - name: Run backend tests
-        run: |
-          pytest test.py
+      # # - name: Run backend tests
+      #   run: |
+      #     pytest test.py
 
   deploy:
     runs-on: ubuntu-latest
