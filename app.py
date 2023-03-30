@@ -10,8 +10,8 @@ CORS(app)
 # create a connection to the Postgres database
 conn = psycopg2.connect (
     host="localhost",
-    database="test_db",
-    user="postgres",
+    database="test_db2",
+    user="postres",
     password="postgres",
     port="5432"
 )
