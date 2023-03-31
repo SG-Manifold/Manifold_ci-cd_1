@@ -35,7 +35,7 @@ function App() {
 
   const handleRegister = (event) => {
     event.preventDefault();
-    axios.post('http://127.0.0.1:5000/register', {
+    axios.post('http://128.199.20.236/register', {
       username: username,
       email: email,
       password: password,
@@ -52,7 +52,7 @@ function App() {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    axios.post('http://127.0.0.1:5000/login', {
+    axios.post('http://128.199.20.236/login', {
       rusername: rusername,
       rpassword: rpassword,
     })
@@ -76,7 +76,7 @@ function App() {
 
   const handleCreateTenant = (event) => {
     event.preventDefault();
-    axios.post('http://127.0.0.1:5000/tenant', {
+    axios.post('http://128.199.20.236/tenant', {
       name: newTenantName,
       domain_name: newTenantDomain,
       api_key: newTenantApiKey,
