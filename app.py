@@ -21,7 +21,7 @@ cur = conn.cursor()
 
 @app.route('/')
 def index():
-    return jsonify({'message': 'Hello, SAi!'}), 200
+    return jsonify({'message': 'Hello, GAurav SIR!'}), 200
 
 @app.route('/w', methods=['GET'])
 def welcome():
