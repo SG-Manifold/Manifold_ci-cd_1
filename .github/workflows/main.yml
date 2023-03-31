@@ -61,7 +61,12 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           username: ${{ secrets.SSH_USERNAME }}
           host: ${{ secrets.SSH_HOST }}
+          script: |
+            cd /root/superadmin
+            git pull origin Develop
+            sudo systemctl restart app
+            sudo systemctl restart nginx
 
-      - name: Deploy code
-        run: |
-          ssh -o "StrictHostKeyChecking=no" ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'cd /root/superadmin && git pull origin Develop && sudo systemctl restart app && sudo systemctl restart nginx' 
+      # - name: Deploy code
+      #   run: |
+      #     ssh -o "StrictHostKeyChecking=no" ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'cd /root/superadmin && git pull origin Develop && sudo systemctl restart app && sudo systemctl restart nginx' 
