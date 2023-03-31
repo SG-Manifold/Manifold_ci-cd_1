@@ -48,7 +48,7 @@ jobs:
           pytest test.py
 
   deploy:
-    deploy:
+    
     runs-on: ubuntu-latest
 
     steps:
