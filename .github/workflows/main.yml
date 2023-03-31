@@ -48,48 +48,20 @@ jobs:
           pytest test.py
 
   deploy:
+    deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    # - name: Setup SSH
-    #   uses: webfactory/ssh-agent@v0.5.0
-    #   with:
-    #     ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Setup SSH
+        uses: appleboy/ssh-action@master
+        with:
+          password: ${{ secrets.SSH_PASSWORD }}
+          username: ${{ secrets.SSH_USERNAME }}
+          host: ${{ secrets.SSH_HOST }}
 
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y python3-pip
-        pip3 install -r requirements.txt
-
-    - name: Deploy to DigitalOcean
-      run: |
-        ssh -o StrictHostKeyChecking=no -p 22 root@128.199.20.236 'cd /root/superadmin && git pull origin Develop && sudo systemctl restart app.service'
-  # deploy-staging:
-  #   needs: [backend-tests]
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/Develop'
-
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v2
-
-    
-  #   - name: Deploy backend staging
-  #     env:
-  #       DO_API_KEY: ${{ secrets.DO_API_KEY }}
-  #       DROPLET_USER: root
-  #       DROPLET_IP: 128.199.20.236
-  #       PROJECT_DIRECTORY: /root/superadmin
-  #     run: |
-  #       # Adapt this script to deploy your backend to the staging droplet on DigitalOcean
-  #       # using the API
-  #       # using the API key stored in the DO_API_KEY environment variable
-  #       # and any necessary deployment scripts or commands. 
-       
-  #       scp -r -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ./* ${{ env.DROPLET_USER }}@${{ env.DROPLET_IP }}:${{ env.PROJECT_DIRECTORY }} 
-  #       ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ env.DROPLET_USER }}@${{ env.DROPLET_IP }} "cd ${{ env.PROJECT_DIRECTORY }} && source env/bin/activate && pip install -r requirements.txt"
-  #       ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_rsa ${{ env.DROPLET_USER }}@${{ env.DROPLET_IP }} "sudo systemctl restart app.service"   
+      - name: Deploy code
+        run: |
+          ssh -o "StrictHostKeyChecking=no" ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'cd /root/superadmin && git pull origin Develop && sudo systemctl restart app && sudo systemctl restart nginx' 

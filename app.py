@@ -19,6 +19,10 @@ conn = psycopg2.connect (
 # create a cursor object to interact with the database
 cur = conn.cursor()
 
+@app.route('/')
+def index():
+    return jsonify({'message': 'Hello, World!'}), 200
+
 @app.route('/w', methods=['GET'])
 def welcome():
     return jsonify({'message': 'Welcome to Manifold!'}), 200
