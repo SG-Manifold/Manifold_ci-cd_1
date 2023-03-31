@@ -48,7 +48,7 @@ jobs:
           pytest test.py
 
   deploy:
-    
+    needs: backend-tests
     runs-on: ubuntu-latest
 
     steps:
@@ -66,7 +66,3 @@ jobs:
             git pull 
             echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl restart app
             sudo -S systemctl restart nginx
-
-      # - name: Deploy code
-      #   run: |
-      #     ssh -o "StrictHostKeyChecking=no" ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} 'cd /root/superadmin && git pull origin Develop && sudo systemctl restart app && sudo systemctl restart nginx' 
