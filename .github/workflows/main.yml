@@ -63,6 +63,6 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           script: |
             cd /root/superadmin
-            git pull 
+            git pull origin Develop
             echo ${{ secrets.SSH_PASSWORD }} | sudo -S systemctl restart app
             sudo -S systemctl restart nginx
