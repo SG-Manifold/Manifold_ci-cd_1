@@ -24,7 +24,7 @@ jobs:
          cd frontend
          npm run build
          CI=false npm run build
-         
+
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
@@ -32,6 +32,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            cd /path/to/deploy/folder
+            cd /var/www/html
             rm -rf *
             scp -r ../build/* .
