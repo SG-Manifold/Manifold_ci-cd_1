@@ -32,6 +32,9 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
+            cd frontend
+            cd frontend
+            git pull 
             cd /var/www/html
             rm -rf *
-            scp -r ../frontend/build/* .
+            scp -r ../frontend/frontend/build/* .
