@@ -150,7 +150,7 @@ function App() {
   if (!loggedInUser) {
     return (
       <div className='form-container'>
-        <h1>Log </h1>
+        <h1>Log In</h1>
         <form onSubmit={handleLogin} className="form-login">
           <div>
             <label htmlFor="username">Username:</label>
