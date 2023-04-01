@@ -34,7 +34,7 @@ jobs:
           script: |
             cd frontend
             cd frontend
-            git pull 
+            git pull origin Develop-f
             cd /var/www/html
             rm -rf *
             scp -r /root/frontend/frontend/build/* .
