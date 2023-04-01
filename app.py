@@ -19,9 +19,9 @@ conn = psycopg2.connect (
 # create a cursor object to interact with the database
 cur = conn.cursor()
 
-@app.route('/')
-def index():
-    return jsonify({'message': 'Hello, GAurav SIR!'}), 200
+# @app.route('/')
+# def index():
+#     return jsonify({'message': 'Hello, GAurav SIR!'}), 200
 
 @app.route('/w', methods=['GET'])
 def welcome():
